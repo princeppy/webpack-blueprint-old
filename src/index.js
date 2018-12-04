@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import style from './index.scss';
 
 class Greeting extends React.Component {
   render() {
-    return <div>Hello, {this.props.name}</div>;
+    return <div className={style.dv}>Hello, {this.props.name}</div>;
   }
 }
 
@@ -14,7 +15,7 @@ Greeting.defaultProps = {
 };
 
 Greeting.propTypes = {
-  name: PropTypes.element.string
+  name: PropTypes.string
 };
 
 ReactDOM.render(<Greeting />, document.getElementById('app'));
