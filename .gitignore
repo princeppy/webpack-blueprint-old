@@ -8,4 +8,5 @@ tmp
 ## Directory-based project format:
 .idea/
 /statsgraph/
+/dist/
 stats.json
