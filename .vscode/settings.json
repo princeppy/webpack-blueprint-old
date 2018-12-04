@@ -1,0 +1,14 @@
+{
+    "prettier.singleQuote": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/app": true
+    },
+    "files.eol": "\n",
+    "git.ignoreLimitWarning": true
+}
