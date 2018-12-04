@@ -40,11 +40,10 @@ const baseConfig = {
     new CleanWebpackPlugin(['dist/*.*', 'statsgraph/*.*'], { root: __dirname }),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].[hash:8].css' }),
     new webpack.LoaderOptionsPlugin({ options: { postcss: [autoprefixer()] } }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].[hash:8].css' }),
     new StatsGraphPlugin()
-    // new MinifyPlugin()
     // new webpackInfoPlugin()
   ],
   module: {
@@ -116,12 +115,11 @@ module.exports = (env, argv) => {
     };
     // const codeGenConfig = {};
     // console.log(merge(baseConfig, codeGenConfig, devServerConfig));
-    return merge(baseConfig, babelConfig, eslintConfig, devServerConfig);
+    return merge(baseConfig, eslintConfig, devServerConfig);
   }
 
   baseConfig.optimization.minimize = true;
   baseConfig.optimization.minimizer = [
-    new MinifyPlugin(),
     new UglifyJsPlugin({
       test: /\.js(\?.*)?$/i
       // sourceMap: false
@@ -129,5 +127,6 @@ module.exports = (env, argv) => {
   ];
   baseConfig.optimization.usedExports = true;
   baseConfig.optimization.sideEffects = true;
-  return merge(baseConfig, babelConfig, eslintConfig);
+  baseConfig.plugins.push(new MinifyPlugin());
+  return merge(baseConfig, babelConfig);
 };

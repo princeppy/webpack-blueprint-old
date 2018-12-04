@@ -11,7 +11,7 @@ class Greeting extends React.Component {
 
 // Specifies the default values for props:
 Greeting.defaultProps = {
-  name: 'Webpack BluePrint : Started 123'
+  name: 'Webpack BluePrint : Started 12345'
 };
 
 Greeting.propTypes = {
