@@ -7,6 +7,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackDashboard = require('webpack-dashboard/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
 /** ** */
 
 const StatsGraphPlugin = require('./webpack/plugins/stats-graph-plugin');
@@ -38,11 +44,15 @@ const baseConfig = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist/*.*', 'statsgraph/*.*'], { root: __dirname }),
+    new WebpackDashboard(),
+    new BundleAnalyzerPlugin(),
+    new DuplicatePackageCheckerPlugin(),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.LoaderOptionsPlugin({ options: { postcss: [autoprefixer()] } }),
     new webpack.NoEmitOnErrorsPlugin(),
     new MiniCssExtractPlugin({ filename: '[name].[hash:8].css' }),
+    // new SuperAwesomePlugin(),
     new StatsGraphPlugin()
     // new webpackInfoPlugin()
   ],
